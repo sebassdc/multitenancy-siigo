@@ -50,7 +50,8 @@ export default function FormPropsTextFields() {
 
   return (
     <div className={classes.container}>
-      <h1>Registro de usuarios</h1>
+      <h1>Tienda Sucursal</h1>
+      <h3>Buscador</h3>
       <form className={classes.root} onSubmit={formik.handleSubmit} noValidate autoComplete="off">
         <TextField
           id="select-user-type"
