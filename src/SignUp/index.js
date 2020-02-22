@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
+import { useFormik } from 'formik'
+import { useStyles } from './styles'
 
 const userTypes = [
   {
@@ -26,78 +27,35 @@ const mockWarehouses = [
   },
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-  },
-  container: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}))
-
 export default function FormPropsTextFields() {
   const classes = useStyles()
-  const [userType, setUserType] = React.useState('store')
-  const [name, setName] = React.useState('')
-  const [address, setAddress] = React.useState('')
-  const [selectedWarehouseId, setSelectedWarehouseId] = React.useState('')
-  const [warehouses, setWarehouses] = React.useState([
-    {
-      value: 'store',
-      label: 'Sucursal',
+
+  const formik = useFormik({
+    initialValues: {
+      userType: 'store',
+      email: '',
+      password: '',
+      name: '',
+      address: '',
+      selectedWarehouseId: '',
     },
-    {
-      value: 'warehouse',
-      label: 'Bodega',
+    onSubmit: values => {
+      // const { userType, name, address, selectedWarehouseId } = values
+      console.log('handleSubmit > dataToSend', JSON.stringify(values, null, 2))
     },
-  ])
-
-  const handleUserType = event => {
-    setUserType(event.target.value)
-  }
-
-  const handleName = event => {
-    setName(event.target.value)
-  }
-
-  const handleAddress = event => {
-    setAddress(event.target.value)
-  }
-
-  const handleSelectedWarehouse = event => {
-    setSelectedWarehouseId(event.target.value)
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    const dataToSend = {
-      userType,
-      name,
-      address,
-      selectedWarehouseId,
-    }
-    console.log('handleSubmit > dataToSend', dataToSend)
-  }
+  })
 
   return (
     <div className={classes.container}>
-      <h1>Registro</h1>
-      <form className={classes.root} onSubmit={handleSubmit} noValidate autoComplete="off">
+      <h1>Registro de usuarios</h1>
+      <form className={classes.root} onSubmit={formik.handleSubmit} noValidate autoComplete="off">
         <TextField
           id="select-user-type"
           select
           label="Tipos de usuarios"
-          value={userType}
-          onChange={handleUserType}
+          name="userType"
+          value={formik.values.userType}
+          onChange={formik.handleChange}
           helperText="Selecciona tipo de usuario"
         >
           {userTypes.map(option => (
@@ -106,15 +64,42 @@ export default function FormPropsTextFields() {
             </MenuItem>
           ))}
         </TextField>
-        <TextField id="name" onChange={handleName} value={name} required label="Nombre" />
-        <TextField id="address" onChange={handleAddress} value={address} label="Dirección" />
-        {userType === 'store' && (
+        <TextField
+          name="email"
+          type="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          required
+          label="E-mail"
+        />
+        <TextField
+          name="password"
+          type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          required
+          label="Contraseña"
+        />
+        <TextField
+          name="name"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          required
+          label="Nombre"
+        />
+        <TextField
+          name="address"
+          onChange={formik.handleChange}
+          value={formik.values.address}
+          label="Dirección"
+        />
+        {formik.values.userType === 'store' && (
           <TextField
-            id="select-warehouse"
+            name="selectedWarehouseId"
             select
             label="Bodegas"
-            value={selectedWarehouseId}
-            onChange={handleSelectedWarehouse}
+            value={formik.values.selectedWarehouseId}
+            onChange={formik.handleChange}
             helperText="Seleccionar una bodega"
           >
             {mockWarehouses.map(option => (
