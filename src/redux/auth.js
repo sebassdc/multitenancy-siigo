@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce'
 
 export const { Types, Creators } = createActions({
   loginRequest: null,
-  loginSuccess: ['userInfo', 'isRehidrate'],
+  loginSuccess: ['userInfo'],
   loginFail: ['error'],
 
   logoutRequest: null,
@@ -19,7 +19,6 @@ const INITIAL_STATE = {
   isAuthInProgress: false,
   isUserLoggedIn: false,
   userInfo: {},
-  isRehidrate: false,
   error: '',
 }
 
@@ -33,7 +32,6 @@ const loginSuccess = (state, action) => ({
   userInfo: action.userInfo,
   isAuthInProgress: false,
   isUserLoggedIn: true,
-  isRehidrate: Boolean(action.isRehidrate),
 })
 
 const loginFail = (state, action) => ({
