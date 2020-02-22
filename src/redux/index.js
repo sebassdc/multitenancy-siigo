@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
-import { reducer as auth } from "./auth";
+import { combineReducers } from 'redux'
+import { reducer as auth } from './auth'
 
-export default combineReducers({ auth });
+export default combineReducers({ auth })
