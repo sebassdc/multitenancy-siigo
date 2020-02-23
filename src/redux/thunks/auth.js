@@ -15,8 +15,8 @@ export const initAuthListenerThunk = () => dispatch => {
           .get()
         const user = {
           ...userInfo,
-          ...(storeInfo.exists ? storeInfo.data() : {}),
-          ...(warehouseInfo.exists ? warehouseInfo.data() : {}),
+          ...(storeInfo.exists ? storeInfo.data() : { userType: 'warehouse' }),
+          ...(warehouseInfo.exists ? warehouseInfo.data() : { userType: 'store' }),
         }
         dispatch(Auth.authSuccess(user))
       } catch (e) {
@@ -41,6 +41,7 @@ export const signupThunk = ({
     const {
       user: { uid },
     } = await auth.createUserWithEmailAndPassword(email, password)
+    console.log('uid: ', uid)
     await firestore
       .collection(userType)
       .doc(uid)

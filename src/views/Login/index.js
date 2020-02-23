@@ -8,9 +8,11 @@ import { useFormik } from 'formik'
 import LinkButton from '../../components/LinkButton'
 import Divisor from '../../components/Divisor'
 import { useStyles } from './styles'
+import useAuthRedirect from '../../utils/useAuthRedirect'
 import { mapStateToProps, mapDispatchToProps } from './store'
 
 const Login = ({ login }) => {
+  useAuthRedirect()
   const classes = useStyles()
 
   const formik = useFormik({
