@@ -7,6 +7,7 @@ import Welcome from '../views/Welcome'
 import SignUp from '../views/SignUp'
 import Login from '../views/Login'
 import Store from '../views/Store'
+import Warehouse from '../views/Warehouse'
 import { mapStateToProps, mapDispatchToProps } from './store'
 
 const App = ({ initAuthListener }) => {
@@ -19,6 +20,7 @@ const App = ({ initAuthListener }) => {
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />
       <Route path="/store" component={Store} />
+      <Route path="/warehouse" component={Warehouse} />
     </Switch>
   )
 }
