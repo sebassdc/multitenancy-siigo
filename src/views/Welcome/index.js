@@ -12,7 +12,7 @@ const Welcome = () => {
       <h1>Welcome</h1>
       <LinkButton label="LOGIN" to="/login" />
       <Divisor />
-      <LinkButton label="REGISTER" to="/signup" />
+      <LinkButton label="SIGN UP" to="/signup" />
     </div>
   )
 }

@@ -41,7 +41,7 @@ const Login = ({ login }) => {
           onChange={formik.handleChange}
           value={formik.values.password}
           required
-          label="Contraseña"
+          label="Password"
         />
         <Button type="submit" id="submit-button" variant="contained" color="primary">
           Login

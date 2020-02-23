@@ -14,11 +14,11 @@ import { mapStateToProps, mapDispatchToProps } from './store'
 const userTypes = [
   {
     value: 'store',
-    label: 'Sucursal',
+    label: 'Store',
   },
   {
     value: 'warehouse',
-    label: 'Bodega',
+    label: 'Warehouse',
   },
 ]
 
@@ -50,12 +50,12 @@ const SignUp = ({ signup }) => {
 
   return (
     <div className={classes.container}>
-      <h1>Registro de usuarios</h1>
+      <h1>Users Sign Up</h1>
       <form className={classes.root} onSubmit={formik.handleSubmit} noValidate autoComplete="off">
         <TextField
           id="select-user-type"
           select
-          label="Tipos de usuarios"
+          label="User Types"
           name="userType"
           value={formik.values.userType}
           onChange={formik.handleChange}
@@ -81,29 +81,29 @@ const SignUp = ({ signup }) => {
           onChange={formik.handleChange}
           value={formik.values.password}
           required
-          label="Contraseña"
+          label="Password"
         />
         <TextField
           name="name"
           onChange={formik.handleChange}
           value={formik.values.name}
           required
-          label="Nombre"
+          label="Name"
         />
         <TextField
           name="address"
           onChange={formik.handleChange}
           value={formik.values.address}
-          label="Dirección"
+          label="Address"
         />
         {formik.values.userType === 'store' && (
           <TextField
             name="selectedWarehouseId"
             select
-            label="Bodegas"
+            label="Warehouses"
             value={formik.values.selectedWarehouseId}
             onChange={formik.handleChange}
-            helperText="Seleccionar una bodega"
+            helperText="Select a warehouse"
           >
             {mockWarehouses.map(option => (
               <MenuItem key={option.value} value={option.value}>
@@ -113,7 +113,7 @@ const SignUp = ({ signup }) => {
           </TextField>
         )}
         <Button type="submit" id="submit-button" variant="contained" color="primary">
-          Registrar
+          Sign up
         </Button>
         <Divisor />
         <LinkButton label="Back" to="/" />
