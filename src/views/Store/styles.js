@@ -4,6 +4,7 @@ export const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: 200,
