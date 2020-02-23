@@ -1,13 +1,12 @@
 import { createReducer, createActions } from 'reduxsauce'
 
 export const { Types, Creators } = createActions({
-  loginRequest: null,
-  loginSuccess: ['userInfo'],
-  loginFail: ['error'],
+  authRequest: null,
 
-  logoutRequest: null,
+  authSuccess: ['userInfo'],
+  authFail: ['error'],
+
   logoutSuccess: null,
-  logoutFail: ['error'],
 
   clear: null,
 })
@@ -17,7 +16,6 @@ export default Creators
 
 const INITIAL_STATE = {
   isAuthInProgress: false,
-  isUserLoggedIn: false,
   userInfo: {},
   error: '',
 }
@@ -27,34 +25,27 @@ const fetchRequest = state => ({
   isAuthInProgress: true,
 })
 
-const loginSuccess = (state, action) => ({
+const authSuccess = (state, action) => ({
   ...state,
   userInfo: action.userInfo,
   isAuthInProgress: false,
-  isUserLoggedIn: true,
 })
 
-const loginFail = (state, action) => ({
+const authFail = (state, action) => ({
   ...state,
   error: action.error,
   isAuthInProgress: false,
-})
-
-const logoutFail = (state, action) => ({
-  ...state,
-  error: action.error,
 })
 
 const clear = () => INITIAL_STATE
 
 const HANDLERS = {
-  [Types.LOGIN_REQUEST]: fetchRequest,
-  [Types.LOGIN_SUCCESS]: loginSuccess,
-  [Types.LOGIN_FAIL]: loginFail,
+  [Types.AUTH_REQUEST]: fetchRequest,
 
-  [Types.LOGOUT_REQUEST]: fetchRequest,
+  [Types.AUTH_SUCCESS]: authSuccess,
+  [Types.AUTH_FAIL]: authFail,
+
   [Types.LOGOUT_SUCCESS]: clear,
-  [Types.LOGOUT_FAIL]: logoutFail,
 
   [Types.CLEAR]: clear,
 }
