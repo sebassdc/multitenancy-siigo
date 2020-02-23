@@ -57,10 +57,19 @@ export const signupThunk = ({
   }
 }
 
-export const loginThunk = (email, password) => async dispatch => {
+export const loginThunk = ({ email, password }) => async dispatch => {
   try {
     dispatch(Auth.authRequest())
     await auth.signInWithEmailAndPassword(email, password)
+  } catch (e) {
+    dispatch(Auth.authFail(e))
+  }
+}
+
+export const logoutThunk = () => async dispatch => {
+  try {
+    dispatch(Auth.authRequest())
+    await auth.signOut()
   } catch (e) {
     dispatch(Auth.authFail(e))
   }
