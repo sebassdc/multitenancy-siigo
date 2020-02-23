@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -18,53 +19,40 @@ const mockProviders = [
   },
 ]
 
-const AddProductForm = () => {
+const AddProductForm = ({ addProduct }) => {
   const classes = useStyles()
 
-  const formikAddProduct = useFormik({
+  const formik = useFormik({
     initialValues: {
       name: '',
       price: 100,
-      stock: 1,
       providerId: '',
     },
-    addProvider: e => console.log('e', e),
+    onSubmit: addProduct,
   })
 
   return (
-    <form
-      className={classes.root}
-      onSubmit={formikAddProduct.handleSubmit}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} onSubmit={formik.handleSubmit} noValidate autoComplete="off">
       <TextField
         name="name"
-        onChange={formikAddProduct.handleChange}
-        value={formikAddProduct.values.name}
+        onChange={formik.handleChange}
+        value={formik.values.name}
         label="Name"
       />
       <TextField
         name="price"
         type="number"
-        onChange={formikAddProduct.handleChange}
-        value={formikAddProduct.values.price}
+        onChange={formik.handleChange}
+        value={formik.values.price}
         label="Price"
-      />
-      <TextField
-        name="stock"
-        type="number"
-        onChange={formikAddProduct.handleChange}
-        value={formikAddProduct.values.stock}
-        label="Stock"
       />
       <TextField
         name="providerId"
         select
         label="Provider"
-        value={formikAddProduct.values.selectedWarehouseId}
-        onChange={formikAddProduct.handleChange}
-        helperText="Select a warehouse"
+        value={formik.values.selectedWarehouseId}
+        onChange={formik.handleChange}
+        helperText="Select a provider"
       >
         {mockProviders.map(option => (
           <MenuItem key={option.value} value={option.value}>
@@ -79,6 +67,10 @@ const AddProductForm = () => {
       </Divisor>
     </form>
   )
+}
+
+AddProductForm.propTypes = {
+  addProduct: PropTypes.func.isRequired,
 }
 
 export default AddProductForm
