@@ -69,7 +69,7 @@ const ROWS = [
     'Alfonso',
   ),
   createData(
-    2,
+    3,
     [
       {
         name: 'Chair',
@@ -100,8 +100,8 @@ const ProductTable = props => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {props.products.map(({ name, stock }, i) => (
-          <TableRow key={i}>
+        {props.products.map(({ name, stock }) => (
+          <TableRow key={name}>
             <TableCell>{name}</TableCell>
             <TableCell>{stock}</TableCell>
           </TableRow>
@@ -125,7 +125,7 @@ export default function CustomizedTables() {
         </TableHead>
         <TableBody>
           {ROWS.map(row => (
-            <StyledTableRow>
+            <StyledTableRow key={row.id}>
               <StyledTableCell align="center">{row.id}</StyledTableCell>
               <StyledTableCell>
                 <ProductTable products={row.products} />
