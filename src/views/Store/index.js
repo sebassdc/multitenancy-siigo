@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 
 import Autocomplete from '../../components/Autocomplete'
 import Divisor from '../../components/Divisor'
-import ProductsTable from './ProductsTable'
+import ProductsTable from '../../components/ProductsTable'
 import QueueTable from './QueueTable'
 import { useStyles } from './styles'
 import { mapStateToProps, mapDispatchToProps } from './store'

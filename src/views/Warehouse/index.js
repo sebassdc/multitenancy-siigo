@@ -1,10 +1,10 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 
 import Divisor from '../../components/Divisor'
+import ProductsTable from '../../components/ProductsTable'
 import AddProductForm from './AddProductForm'
-import ReplaceProduct from './ReplaceProduct'
+import ReplaceProduct from './ReplaceProductForm'
+import AddProvider from './AddProviderForm'
 import { useStyles } from './styles'
 
 const Warehouse = () => {
@@ -14,19 +14,14 @@ const Warehouse = () => {
     <div className={classes.container}>
       <h1>Warehouse</h1>
       <div className={classes.group}>
-        <div className={classes.root}>
-          <h3>Add provider</h3>
-          <TextField name="provider" onChange={() => {}} value="" label="Provider" />
-          <Divisor>
-            <Button variant="contained" color="primary">
-              Add
-            </Button>
-          </Divisor>
-        </div>
+        <h3>Add provider</h3>
+        <AddProvider />
         <Divisor />
         <h3>Add product</h3>
-        <Divisor />
         <AddProductForm />
+        <Divisor />
+        <h3>Products Table</h3>
+        <ProductsTable />
         <Divisor />
         <h3>Replace product</h3>
         <ReplaceProduct />
