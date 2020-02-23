@@ -1,35 +1,14 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import MenuItem from '@material-ui/core/MenuItem'
-import { useFormik } from 'formik'
 
 import Divisor from '../../components/Divisor'
+import AddProductForm from './AddProductForm'
+import ReplaceProduct from './ReplaceProduct'
 import { useStyles } from './styles'
-
-const mockProviders = [
-  {
-    value: 'aakdsnfkjasdhfklhads',
-    label: 'Provider 1',
-  },
-  {
-    value: 'kasdlkfjasdlkjflkadsj',
-    label: 'Provider 2',
-  },
-]
 
 const Warehouse = () => {
   const classes = useStyles()
-
-  const formikAddProduct = useFormik({
-    initialValues: {
-      name: '',
-      price: 100,
-      stock: 1,
-      providerId: '',
-    },
-    addProvider: e => console.log('e', e),
-  })
 
   return (
     <div className={classes.container}>
@@ -47,52 +26,10 @@ const Warehouse = () => {
         <Divisor />
         <h3>Add product</h3>
         <Divisor />
-        <form
-          className={classes.root}
-          onSubmit={formikAddProduct.handleSubmit}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            name="name"
-            onChange={formikAddProduct.handleChange}
-            value={formikAddProduct.values.name}
-            label="Name"
-          />
-          <TextField
-            name="price"
-            type="number"
-            onChange={formikAddProduct.handleChange}
-            value={formikAddProduct.values.price}
-            label="Price"
-          />
-          <TextField
-            name="stock"
-            type="number"
-            onChange={formikAddProduct.handleChange}
-            value={formikAddProduct.values.stock}
-            label="Price"
-          />
-          <TextField
-            name="providerId"
-            select
-            label="Provider"
-            value={formikAddProduct.values.selectedWarehouseId}
-            onChange={formikAddProduct.handleChange}
-            helperText="Seleccionar una bodega"
-          >
-            {mockProviders.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <Divisor>
-            <Button type="submit" variant="contained" color="primary">
-              Add
-            </Button>
-          </Divisor>
-        </form>
+        <AddProductForm />
+        <Divisor />
+        <h3>Replace product</h3>
+        <ReplaceProduct />
       </div>
     </div>
   )
