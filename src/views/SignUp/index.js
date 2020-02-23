@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
+
+import LinkButton from '../../components/LinkButton'
+import Divisor from '../../components/Divisor'
 import { useStyles } from './styles'
 import { mapStateToProps, mapDispatchToProps } from './store'
 
@@ -112,6 +115,8 @@ const FormPropsTextFields = ({ signup }) => {
         <Button type="submit" id="submit-button" variant="contained" color="primary">
           Registrar
         </Button>
+        <Divisor />
+        <LinkButton label="Back" to="/" />
       </form>
     </div>
   )

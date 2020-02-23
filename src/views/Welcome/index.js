@@ -1,12 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-// import Button from '@material-ui/core/Button'
 
-const Welcome = () => (
-  <div>
-    <Link to="/login">Login</Link>
-    <Link to="/signup">Register</Link>
-  </div>
-)
+import LinkButton from '../../components/LinkButton'
+import Divisor from '../../components/Divisor'
+
+import { useStyles } from './styles'
+
+const Welcome = () => {
+  const classes = useStyles()
+  return (
+    <div className={classes.container}>
+      <h1>Welcome</h1>
+      <LinkButton label="LOGIN" to="/login" />
+      <Divisor />
+      <LinkButton label="REGISTER" to="/signup" />
+    </div>
+  )
+}
 
 export default Welcome

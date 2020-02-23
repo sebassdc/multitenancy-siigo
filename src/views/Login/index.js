@@ -2,6 +2,9 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
+
+import LinkButton from '../../components/LinkButton'
+import Divisor from '../../components/Divisor'
 import { useStyles } from './styles'
 
 export default function FormPropsTextFields() {
@@ -40,6 +43,8 @@ export default function FormPropsTextFields() {
         <Button type="submit" id="submit-button" variant="contained" color="primary">
           Login
         </Button>
+        <Divisor />
+        <LinkButton label="Back" to="/" />
       </form>
     </div>
   )
