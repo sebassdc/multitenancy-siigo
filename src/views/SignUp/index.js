@@ -33,7 +33,7 @@ const mockWarehouses = [
   },
 ]
 
-const FormPropsTextFields = ({ signup }) => {
+const SignUp = ({ signup }) => {
   const classes = useStyles()
 
   const formik = useFormik({
@@ -122,8 +122,8 @@ const FormPropsTextFields = ({ signup }) => {
   )
 }
 
-FormPropsTextFields.propTypes = {
+SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormPropsTextFields)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

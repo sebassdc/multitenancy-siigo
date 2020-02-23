@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
+import PrivateRoute from '../components/PrivateRoute'
 import './App.css'
 import Welcome from '../views/Welcome'
 import SignUp from '../views/SignUp'
@@ -19,8 +20,12 @@ const App = ({ initAuthListener }) => {
       <Route path="/" exact component={Welcome} />
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />
-      <Route path="/store" component={Store} />
-      <Route path="/warehouse" component={Warehouse} />
+      <PrivateRoute path="/store">
+        <Store />
+      </PrivateRoute>
+      <PrivateRoute path="/warehouse">
+        <Warehouse />
+      </PrivateRoute>
     </Switch>
   )
 }

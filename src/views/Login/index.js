@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
@@ -6,8 +8,9 @@ import { useFormik } from 'formik'
 import LinkButton from '../../components/LinkButton'
 import Divisor from '../../components/Divisor'
 import { useStyles } from './styles'
+import { mapStateToProps, mapDispatchToProps } from './store'
 
-export default function FormPropsTextFields() {
+const Login = ({ login }) => {
   const classes = useStyles()
 
   const formik = useFormik({
@@ -15,9 +18,7 @@ export default function FormPropsTextFields() {
       email: '',
       password: '',
     },
-    onSubmit: values => {
-      console.log('handleSubmit > dataToSend', JSON.stringify(values, null, 2))
-    },
+    onSubmit: login,
   })
 
   return (
@@ -49,3 +50,9 @@ export default function FormPropsTextFields() {
     </div>
   )
 }
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
