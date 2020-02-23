@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
 import { useStyles } from './styles'
+import { mapStateToProps, mapDispatchToProps } from './store'
 
 const userTypes = [
   {
@@ -27,7 +30,7 @@ const mockWarehouses = [
   },
 ]
 
-export default function FormPropsTextFields() {
+const FormPropsTextFields = ({ signup }) => {
   const classes = useStyles()
 
   const formik = useFormik({
@@ -39,10 +42,7 @@ export default function FormPropsTextFields() {
       address: '',
       selectedWarehouseId: '',
     },
-    onSubmit: values => {
-      // const { userType, name, address, selectedWarehouseId } = values
-      console.log('handleSubmit > dataToSend', JSON.stringify(values, null, 2))
-    },
+    onSubmit: signup,
   })
 
   return (
@@ -116,3 +116,9 @@ export default function FormPropsTextFields() {
     </div>
   )
 }
+
+FormPropsTextFields.propTypes = {
+  signup: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormPropsTextFields)
