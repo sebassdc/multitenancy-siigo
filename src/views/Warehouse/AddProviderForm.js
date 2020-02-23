@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import { useFormik } from 'formik'
@@ -6,27 +7,22 @@ import { useFormik } from 'formik'
 import Divisor from '../../components/Divisor'
 import { useStyles } from './styles'
 
-const AddProvider = () => {
+const AddProvider = ({ addProvider }) => {
   const classes = useStyles()
 
-  const formikAddProduct = useFormik({
+  const formik = useFormik({
     initialValues: {
-      provider: '',
+      name: '',
     },
-    addProvider: e => console.log('e', e),
+    onSubmit: addProvider,
   })
 
   return (
-    <form
-      className={classes.root}
-      onSubmit={formikAddProduct.handleSubmit}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} onSubmit={formik.handleSubmit} noValidate autoComplete="off">
       <TextField
-        name="provider"
-        onChange={formikAddProduct.handleChange}
-        value={formikAddProduct.values.provider}
+        name="name"
+        onChange={formik.handleChange}
+        value={formik.values.name}
         label="Provider"
       />
       <Divisor>
@@ -36,6 +32,10 @@ const AddProvider = () => {
       </Divisor>
     </form>
   )
+}
+
+AddProvider.propTypes = {
+  addProvider: PropTypes.func.isRequired,
 }
 
 export default AddProvider
